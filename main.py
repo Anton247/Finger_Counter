@@ -13,14 +13,12 @@ while True:
     RGB_image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
     results = hands.process(RGB_image)
     multiLandMarks = results.multi_hand_landmarks
-    try:
+  
+
+    if multiLandMarks:
         for idx, handLms in enumerate(results.multi_hand_landmarks):
             lbl = results.multi_handedness[idx].classification[0].label
             print(lbl)
-    except:
-        pass
-
-    if multiLandMarks:
         handList = []
         for handLms in multiLandMarks:
             mpDraw.draw_landmarks(image, handLms, mp_Hands.HAND_CONNECTIONS)
